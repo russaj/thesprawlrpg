@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<titleGM >Move Selector</title>
+	<script type="text/javascript">
+		function generateMove() {
+			var moveType = document.querySelector('input[name="moveType"]:checked').value;
+			var names = document.getElementById('names').value.split(',');
+			var move = '';
+			if (moveType === 'threat') {
+				var threatMoves = ["Corrupt, Manipulate, Steal", "Reflect decay of society and its structures", "Display conflict between humanity and technology"];
+				move = threatMoves[Math.floor(Math.random() * threatMoves.length)];
+			} else if (moveType === 'corporate') {
+				var corporateMoves = ["Buy out smaller operators", "Make life difficult for someone", "Deploy technology"];
+				move = corporateMoves[Math.floor(Math.random() * corporateMoves.length)];
+			} else if (moveType === 'gm') {
+				var gmMoves = ["Show them the barrel of the gun", "Make their lives complicated", "Put someone in a tight spot"];
+				move = gmMoves[Math.floor(Math.random() * gmMoves.length)];
+			}
+			var name = names[Math.floor(Math.random() * names.length)];
+			var output = name.trim() + " will " + move.trim();
+			document.getElementById('output').innerHTML = output;
+		}
+	</script>
+</head>
+<body>
+	<h1>Move Selector</h1>
+	<p>Select a move type:</p>
+	<form>
+		<input type="radio" id="threat" name="moveType" value="threat">
+		<label for="threat">Threat Move</label><br>
+		<input type="radio" id="corporate" name="moveType" value="corporate">
+		<label for="corporate">Corporate Move</label><br>
+		<input type="radio" id="gm" name="moveType" value="gm">
+		<label for="gm">GM Move</label><br><br>
+		<label for="names">Enter a comma-separated list of names:</label><br>
+		<input type="text" id="names" name="names"><br><br>
+		<input type="button" value="Generate Move" onclick="generateMove()">
+	</form>
+	<p id="output"></p>
+</body>
+</html>
